@@ -1,0 +1,7 @@
+<!-- Repli pour Android < 8 (pas d'icône adaptative) : fond noir, M rouge. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/mrflix_noir" />
+    <item
+        android:drawable="@drawable/ic_launcher_foreground"
+        android:gravity="center" />
+</layer-list>

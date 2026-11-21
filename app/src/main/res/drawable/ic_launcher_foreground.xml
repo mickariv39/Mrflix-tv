@@ -1,0 +1,27 @@
+<!--
+  Le M de MrFlix, centré et petit dans la zone sûre de l'icône adaptative.
+  Deux rouges, façon Netflix : le rouge plein (#E50914) et un rouge plus
+  sombre (#B20710) sur les deux plis intérieurs du M, qui donne le relief
+  de ruban. Mêmes chemins que logo_mrflix.xml.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <group
+        android:translateX="32.4"
+        android:translateY="28.8"
+        android:scaleX="0.36"
+        android:scaleY="0.36">
+        <path
+            android:fillColor="#E50914"
+            android:pathData="M0 0h30l30 78 30-78h30v140H92V55l-24 63H52L28 55v85H0z" />
+        <path
+            android:fillColor="#B20710"
+            android:pathData="M30 0l30 78-8 40L28 55z" />
+        <path
+            android:fillColor="#B20710"
+            android:pathData="M90 0l2 55-24 63-8-40z" />
+    </group>
+</vector>

@@ -1,0 +1,12 @@
+<!--
+  Bannière affichée sur l'écran d'accueil du Chromecast / Google TV
+  (320 x 180). Fond noir, le M rouge de MrFlix centré.
+-->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/mrflix_noir" />
+    <item
+        android:drawable="@drawable/logo_mrflix"
+        android:gravity="center"
+        android:width="66dp"
+        android:height="77dp" />
+</layer-list>

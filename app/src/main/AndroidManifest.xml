@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!-- leanback NON requis : la même application sert la TV et le mobile.
+         touchscreen NON requis : elle marche aussi à la télécommande. -->
+    <uses-feature
+        android:name="android.software.leanback"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
+
+    <application
+        android:allowBackup="true"
+        android:banner="@drawable/banner_mrflix"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
+        android:usesCleartextTraffic="true">
+
+        <!-- Permet de mesurer la fluidité de la version « release »
+             (simpleperf) sans la rendre débogable. Aucun effet pour
+             l'utilisateur. -->
+        <profileable android:shell="true" />
+
+        <activity
+            android:name=".MainActivity"
+            android:banner="@drawable/banner_mrflix"
+            android:icon="@mipmap/ic_launcher"
+            android:configChanges="keyboard|keyboardHidden|navigation|screenSize|screenLayout|smallestScreenSize|orientation|uiMode|density|fontScale|touchscreen"
+            android:exported="true">
+            <!-- LEANBACK_LAUNCHER : écran d'accueil Google TV.
+                 LAUNCHER : tiroir d'applications des téléphones et tablettes. -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".LecteurActivity"
+            android:configChanges="keyboard|keyboardHidden|navigation|screenSize|screenLayout|smallestScreenSize|orientation|uiMode|density|fontScale|touchscreen"
+            android:exported="false"
+            android:supportsPictureInPicture="true"
+            android:screenOrientation="sensorLandscape" />
+
+        <!-- Le lecteur tourne ici, pas dans l'Activity : un service au premier
+             plan avec une session média est ce que le système (et les
+             gestionnaires de batterie des constructeurs) reconnaissent comme
+             une lecture active à ne pas couper en arrière-plan ou en PiP. -->
+        <service
+            android:name=".LecteurService"
+            android:exported="false"
+            android:foregroundServiceType="mediaPlayback">
+            <intent-filter>
+                <action android:name="androidx.media3.session.MediaSessionService" />
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>
